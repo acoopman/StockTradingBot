@@ -140,6 +140,7 @@ namespace yfapi
     std::string YahooFinanceAPI::download_ticker_data(std::string ticker, std::string start, std::string end)
     {
         std::string url = build_url(ticker, start, end);
+        //std::cout << "url = " << url << std::endl;
         std::time_t now = std::time(0);
         //std::string output_file_name = ticker + "_" + std::to_string(now) + ".csv";
         std::string output_file_name = ticker + "_" + ".csv";

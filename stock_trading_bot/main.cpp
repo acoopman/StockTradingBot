@@ -9,14 +9,15 @@ int main(int argc, char* argv[])
     ifstream in;
 
     //download data
-    api.download_ticker_data("aapl", "2020-01-01", "2020-10-07");
+    api.download_ticker_data("aapl", "2010-01-01", "2021-10-07");
 
+    //stock data interval
+    api.set_interval(DAILY);
 
-
-    api.set_interval(MONTHLY);
 
     stock_info stock;
-    int line_count = 200;
+    int line_count = 200; 
+    //cout << "there are " << line_count << "lines\n";
 
     //open file
     cout << "Opening file: " << "aapl_.csv" << endl;
@@ -33,8 +34,13 @@ int main(int argc, char* argv[])
 
 
     //TODO: need to reset iterator somehow
-    //line_count = get_num_lines(in);
+    line_count = get_num_lines(in);
+    line_count++; //have to add one for some reason, otherwise allocation breaks
     cout << "Num of lines = " << line_count << endl;
+
+    //reset to start of file
+    in.clear();
+    in.seekg(0);
 
     //allocate memory
     alloc_all_mem(stock, line_count);
@@ -47,7 +53,7 @@ int main(int argc, char* argv[])
     cout << "Inputted data\n";
 
     //********************************************************
-    dealloc_all_mem(stock, line_count);
+    dealloc_all_mem(stock, line_count+1);
     in.close();
     //datatable::DataTable dt2 = api.get_ticker_data("aapl", "2010-01-01", "2020-10-01", true);
 

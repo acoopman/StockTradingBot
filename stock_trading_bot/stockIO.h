@@ -39,3 +39,5 @@ void dealloc_all_mem(stock_info& stock, int line_count);
 float* alloc2d(int rows);
 
 void free2d(float*& ptr, int rows);
+
+void output_data(stock_info& stock, ifstream& in);

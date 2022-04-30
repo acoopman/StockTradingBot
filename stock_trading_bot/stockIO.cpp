@@ -25,6 +25,7 @@ int get_num_lines(ifstream& in)
 //inputing data in doubly linked lists
 void input_data(stock_info& stock, ifstream& in)
 {
+
     string line;
     string val;
     int row_count = 0;
@@ -34,31 +35,31 @@ void input_data(stock_info& stock, ifstream& in)
     {
         //cout << "grabbed " << line << endl;
 
-        getline(in, val, '/');
-        //cout << "grabbed " << val << endl;
-
-        stock.month[row_count] = strtof(val.c_str(), NULL);
-        //cout << "stock.month[row_count] = " << stock.month[row_count] << endl;
-
-        getline(in, val, '/');
-        stock.day[row_count] = strtof(val.c_str(), NULL);
-        //cout << "stock.day[row_count] = " << stock.day[row_count] << endl;
-
-        getline(in, val, ',');
+        getline(in, val, '-');
         stock.year[row_count] = strtof(val.c_str(), NULL);
         //cout << "stock.year[row_count] = " << stock.year[row_count] << endl;
 
-        getline(in, val, ':');
-        stock.hour[row_count] = strtof(val.c_str(), NULL);
-        //cout << "stock.hour[row_count] = " << stock.hour[row_count] << endl;
-
-        getline(in, val, ':');
-        stock.min[row_count] = strtof(val.c_str(), NULL);
-        //cout << "stock.min[row_count] = " << stock.min[row_count] << endl;
+        getline(in, val, '-');
+        stock.month[row_count] = strtof(val.c_str(), NULL);
+        //cout << "stock.month[row_count] = " << stock.month[row_count] << endl;
 
         getline(in, val, ',');
-        stock.sec[row_count] = strtof(val.c_str(), NULL);
+        stock.day[row_count] = strtof(val.c_str(), NULL);
+        //cout << "stock.day[row_count] = " << stock.day[row_count] << endl;
+
+
+        //getline(in, val, ':');
+        //stock.hour[row_count] = strtof(val.c_str(), NULL);
+        //cout << "stock.hour[row_count] = " << stock.hour[row_count] << endl;
+
+        //getline(in, val, ':');
+        //stock.min[row_count] = strtof(val.c_str(), NULL);
+        //cout << "stock.min[row_count] = " << stock.min[row_count] << endl;
+
+        //getline(in, val, ',');
+        //stock.sec[row_count] = strtof(val.c_str(), NULL);
         //cout << "stock.sec[row_count] = " << stock.sec[row_count] << endl;
+
 
         getline(in, val, ',');
         stock.open[row_count] = strtof(val.c_str(), NULL);
@@ -78,8 +79,21 @@ void input_data(stock_info& stock, ifstream& in)
 
         row_count++;
     }
+
+    //cout << "made it to row #" << row_count << endl;
+
 }
 
+
+
+//inputing data in doubly linked lists
+void output_data(stock_info& stock, ifstream& in, int line_count)
+{
+
+
+
+    
+}
 
 
 void alloc_all_mem(stock_info& stock, int line_count)
@@ -87,9 +101,9 @@ void alloc_all_mem(stock_info& stock, int line_count)
     stock.year = alloc2d(line_count); // rows
     stock.month = alloc2d(line_count);
     stock.day = alloc2d(line_count);
-    stock.hour = alloc2d(line_count);
-    stock.min = alloc2d(line_count);
-    stock.sec = alloc2d(line_count);
+    //stock.hour = alloc2d(line_count);
+    //stock.min = alloc2d(line_count);
+    //stock.sec = alloc2d(line_count);
     stock.open = alloc2d(line_count);
     stock.high = alloc2d(line_count);
     stock.low = alloc2d(line_count);
@@ -103,9 +117,10 @@ void dealloc_all_mem(stock_info& stock, int line_count)
     free2d(stock.year, line_count);
     free2d(stock.month, line_count);
     free2d(stock.day, line_count);
-    free2d(stock.hour, line_count);
-    free2d(stock.min, line_count);
-    free2d(stock.sec, line_count);
+
+    //free2d(stock.hour, line_count);
+    //free2d(stock.min, line_count);
+    //free2d(stock.sec, line_count);
     free2d(stock.open, line_count);
     free2d(stock.high, line_count);
     free2d(stock.low, line_count);
